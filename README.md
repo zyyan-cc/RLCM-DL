@@ -9,6 +9,9 @@
 git clone https://github.com/zyyan-cc/Res1DNN
 cd Res1DNN
 pip install -r requirements.txt
-
   ```
-  
+### Demo
+  The user can train the CaO inversion model by running the following command:
+```
+python main_training.py --gpu 0 --dataname TiO2 --batch-size 59 --model-type ResDCNN
+```
