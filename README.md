@@ -6,7 +6,7 @@
 
 ### Installation Guide
   ```
-git clone https://github.com/zyyan-cc/RLCM-DL
+https://github.com/zyyan-cc/RLCM-DL.git
 cd RLCM-DL
 pip install -r requirements.txt
   ```
