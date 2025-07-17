@@ -15,3 +15,6 @@ pip install -r requirements.txt
 ```
 python main_training.py --gpu 0 --dataname TiO2 --batch-size 59 --model-type ResDCNN
 ```
+### License
+
+`Res1DNN` is free software made available under the MIT License. For details see the `LICENSE.md` file.
