@@ -30,3 +30,7 @@ python main_predicting.py --gpu 0 --dataname TiO2 --datapath ./spec_Kaguya_MI_by
 ### License
 
 `RLCM-DL` is free software made available under the MIT License. For details see the `LICENSE.md` file.
+
+## Acknowledgement
+This library is constructed based on the following repo:
+- [Deep Learning-based Inversion Model](https://github.com/hszhaohs/DL-IM) 
