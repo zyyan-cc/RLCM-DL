@@ -49,16 +49,14 @@ def train(model, dataloader, criterion, optimizer, lr_scheduler, epoch, cfg):
         # prepare data
         inputs = inputs.to(cfg.device)
         targets = targets.to(cfg.device)
-        # print(inputs.shape)
+
         # zero the parameter gradients
         optimizer.zero_grad()
         
         # compute output
         outputs = model(inputs)
-        # print("*"*100)
-        # print(outputs.shape)
         loss = criterion(outputs, targets)
-        # print(loss.shape, loss)
+
         # compute gradient and do optimizer step
         loss.backward()
         optimizer.step()
@@ -222,7 +220,6 @@ def pred_model(model, dataloader, cfg):
         # prepare data
         inputs = data
         inputs = inputs.to(cfg.device)
-        # print(inputs)
 
         # compute output
         with torch.no_grad():
