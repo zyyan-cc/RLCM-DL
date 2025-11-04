@@ -30,9 +30,7 @@ def parse_args():
 
 def create_model(cfg):
     assert cfg.model.model_type == 'ResDCNN', "Model Wrong!!!"
-    if cfg.model.model_type == 'ResDCNN':
         model_init = new_model_resdcnn.ResDCNN().to(cfg.device)
-
     return model_init
 
 
