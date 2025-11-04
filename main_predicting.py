@@ -69,7 +69,7 @@ if cfg.data.do_scale:
 
 print('-------- Predicting --------')
 # Load spec data for pred
-spec_list = glob(os.path.join(cfg.data.datapath_pred, 'spec*.csv'))
+spec_list = glob(os.path.join(cfg.data.datapath_pred, '*.csv'))
 
 pbar = tqdm(enumerate(spec_list), total=len(spec_list))
 for ii_spec, spec_file in pbar:
