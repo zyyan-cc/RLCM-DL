@@ -6,7 +6,6 @@ import torch
 import torch.utils.data as data
 import torch.backends.cudnn as cudnn
 
-import models
 from utils.data_spec import load_dataset, DataSetGeneratorSpec
 from utils import record
 from trainer import pred_model
@@ -16,8 +15,7 @@ import ruamel.yaml as yaml
 from easydict import EasyDict
 from glob import glob
 from tqdm import tqdm
-import new_model_resdcnn
-import model_se_resnet1d
+import model_resdcnn
 
 def parse_args():
     """Parse input arguments."""
@@ -30,7 +28,7 @@ def parse_args():
 
 def create_model(cfg):
     assert cfg.model.model_type == 'ResDCNN', "Model Wrong!!!"
-        model_init = new_model_resdcnn.ResDCNN().to(cfg.device)
+        model_init = model_resdcnn.ResDCNN().to(cfg.device)
     return model_init
 
 
