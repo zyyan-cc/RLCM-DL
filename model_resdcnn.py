@@ -103,7 +103,7 @@ class ResDCNN(nn.Module):
         x = self.layer1(x)
         x = self.layer2(x)
         x = self.layer3(x)
-        # print(x.shape)
+
         if self.include_top:
             x = self.avgpool(x)
             x = x.view(x.size(0), -1)
