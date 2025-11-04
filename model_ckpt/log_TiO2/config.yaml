@@ -14,10 +14,11 @@ optim:
 use_gpu: true
 gpu_id: 0
 epochs: 100
-batch_size: 54
+batch_size: 59
 save_ckpt: true
 record_type: CV
 num_workers: 0
 worker_dir: []
 load_from: []
 resume_from: []
+
