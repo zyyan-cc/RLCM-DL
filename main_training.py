@@ -8,11 +8,7 @@ from torch import optim
 import torch.utils.data as data
 import torch.backends.cudnn as cudnn
 
-import models
-import model_resnet1d
-import model_se_resnet1d
 import model_resdcnn
-import new_model_resdcnn
 
 from utils.data_spec import load_dataset, generate_dataset, DataSetGeneratorSpec
 from utils.utils import Logger
@@ -58,7 +54,7 @@ def setup_seed(seed):
 
 def create_model(cfg):
     assert cfg.model.model_type == 'ResDCNN', "Model Wrong!!!"
-        model_init = new_model_resdcnn.ResDCNN().to(cfg.device)
+        model_init = model_resdcnn.ResDCNN().to(cfg.device)
     return model_init
 
 args = parse_args()
