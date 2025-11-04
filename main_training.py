@@ -90,7 +90,7 @@ if torch.cuda.is_available():
 device = torch.device('cuda:{}'.format(args.gpu_id) if torch.cuda.is_available() else 'cpu')
 cfg.device = device
 
-cfg.work_dir = '/root/autodl-tmp/log_{}_{}_Epoch={}_{}'.format(cfg.model.model_type, cfg.data.dataname, cfg.epochs, timestamp)
+cfg.work_dir = './log_{}_{}_Epoch={}_{}'.format(cfg.model.model_type, cfg.data.dataname, cfg.epochs, timestamp)
 if not os.path.exists(cfg.work_dir):
     os.makedirs(cfg.work_dir)
 with open(os.path.join(cfg.work_dir, 'config.yaml'), 'w') as ff:
@@ -106,8 +106,7 @@ logger.info('-----Importing Dataset-----')
 logger.info(' ** Dataset\'s name: {}'.format(cfg.data.dataname))
 if cfg.data.do_scale:
     spec_data, gt, cfg.scaler_X, cfg.scaler_Y = load_dataset(cfg.data.dataname, cfg.data.datapath, do_scale=cfg.data.do_scale)
-    print(cfg.scaler_Y.mean_)
-    print(cfg.scaler_Y.var_)
+
 else:
     spec_data, gt = load_dataset(cfg.data.dataname, cfg.data.datapath, do_scale=cfg.data.do_scale)
 num_samples = len(gt)
@@ -170,8 +169,6 @@ Metric_col = ['Result_{}'.format(cfg.data.dataname)]
 Metric_df = pd.DataFrame(Metric_all, index=Metric_index, columns=Metric_col)
 Metric_file = os.path.join(cfg.work_dir, 'Records_RMSE-R2_{}.csv'.format(cfg.data.dataname))
 Metric_df.to_csv(Metric_file)
-
-print(Metric_df)
 
 cfg.logger.info('--------Finished-----------')
 
