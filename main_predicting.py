@@ -67,9 +67,6 @@ model_best.to(cfg.device)
 if cfg.data.do_scale:
     _, _, cfg.scaler_X, cfg.scaler_Y = load_dataset(cfg.data.dataname, cfg.data.datapath, do_scale=cfg.data.do_scale)
 
-print(cfg.scaler_Y.mean_)
-print(cfg.scaler_Y.var_)
-
 print('-------- Predicting --------')
 # Load spec data for pred
 spec_list = glob(os.path.join(cfg.data.datapath_pred, 'spec*.csv'))
@@ -85,18 +82,16 @@ for ii_spec, spec_file in pbar:
         spec_data = spec_np[:, 1:-1].astype(np.float32)
     elif cfg.data.dataname in ['Al2O3', 'MgO', 'CaO', 'SiO2']:
         spec_data = spec_np[:, 1:-1].astype(np.float32)
-    print(spec_data)
+
     num_samples = len(spec_data)
     cfg.batch_size = num_samples
     if cfg.data.do_scale:
-        print(spec_data.shape)
         spec_data = cfg.scaler_X.transform(spec_data)
     spec_dataset = DataSetGeneratorSpec(spec_data)
     spec_dataloader = data.DataLoader(spec_dataset, batch_size=cfg.batch_size, num_workers=cfg.num_workers)
 
     # pred
     pred_result = pred_model(model_best, spec_dataloader, cfg)
-    print(pred_result)
 
     record.record_pred(pred_result, cfg)
 
