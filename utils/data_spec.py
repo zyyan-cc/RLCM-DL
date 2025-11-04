@@ -17,8 +17,7 @@ def load_dataset(dataname, datapath, do_scale=False):
         scaler_Y = StandardScaler().fit(gt_content)
         spec_data = scaler_X.transform(spec_data)
         gt_content = scaler_Y.transform(gt_content)
-        # print(scaler_X.mean_, scaler_X.var_)
-        # print(scaler_Y.mean_, scaler_Y.var_)
+
         return spec_data, gt_content, scaler_X, scaler_Y
     else:
         gt_content *= 0.01
@@ -59,13 +58,11 @@ class DataSetGeneratorSpec(data.Dataset):
         """Generate one sample of data"""
         # Select sample
         x_data = self.data[np.newaxis, index]
-        # print(x_data.shape)
+
         # Load data
         x_data = self.transforms(x_data)
-        # print(x_data.shape)
         x_data = x_data.squeeze(dim=0)
-        # print(x_data.shape)
-        # print("*"*100)
+
         if self.has_target:
             label = self.targets[index]
             return x_data, label
