@@ -125,7 +125,7 @@ for idx_sample in range(num_samples):
 
     cfg.logger.info('-------- Train model: Num_Samples {}--------'.format(idx_sample+1))
     x_train, y_train, x_test, y_test = generate_dataset(spec_data, gt, idx_sample, num_samples)
-    # print(x_test.shape, y_test.shape)
+
     train_dataset = DataSetGeneratorSpec(x_train, targets=y_train)
     train_dataloader = data.DataLoader(train_dataset, batch_size=cfg.batch_size,
                                        shuffle=cfg.data.is_shuffle, num_workers=cfg.num_workers)
@@ -158,9 +158,7 @@ for idx_sample in range(num_samples):
     test_rmse, test_pred = test_model(model_ft, test_dataloader, criterion, cfg)
     toc2 = time.perf_counter()
     Pred_CV.append(test_pred)
-    # print(len(test_pred))
-    # print(test_pred[0][0])
-    # test_pred[1.1]
+
 R2_score_CV_np, RMSE_CV_np = record.record_output(gt, Pred_CV, cfg)
 
 Metric_all = np.vstack([RMSE_CV_np, R2_score_CV_np])
