@@ -49,7 +49,6 @@ def parse_args():
     
     return parser.parse_args()
 
-
 def setup_seed(seed):
     torch.manual_seed(seed)
     torch.cuda.manual_seed_all(seed)
@@ -57,18 +56,10 @@ def setup_seed(seed):
     random.seed(seed)
     torch.backends.cudnn.deterministic = True
 
-
 def create_model(cfg):
-    if cfg.model.model_type == 'OneDCNN':
-        model_init = models.OneDCNN().to(cfg.device)
-    elif cfg.model.model_type == 'resnet1d_18':
-        model_init = model_resnet1d.resnet1d_18().to(cfg.device)
-    elif cfg.model.model_type == 'se_resnet1d_18':
-        model_init = model_se_resnet1d.se_resnet1d_18().to(cfg.device)
-    elif cfg.model.model_type == 'ResDCNN':
+    assert cfg.model.model_type == 'ResDCNN', "Model Wrong!!!"
         model_init = new_model_resdcnn.ResDCNN().to(cfg.device)
     return model_init
-
 
 args = parse_args()
 timestamp = time.strftime('%Y%m%d_%H%M%S', time.localtime())
