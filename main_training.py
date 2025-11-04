@@ -54,7 +54,7 @@ def setup_seed(seed):
 
 def create_model(cfg):
     assert cfg.model.model_type == 'ResDCNN', "Model Wrong!!!"
-        model_init = model_resdcnn.ResDCNN().to(cfg.device)
+    model_init = model_resdcnn.ResDCNN().to(cfg.device)
     return model_init
 
 args = parse_args()
